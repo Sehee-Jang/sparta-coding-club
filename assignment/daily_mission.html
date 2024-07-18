@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Mission</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+        * {
+            font-family: "Gowun Dodum", sans-serif;
+        }
+
+        .item {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const data = {
+                info: [
+                    { name: '서영', weight: 58, },
+                    { name: '현아', weight: 60, },
+                    { name: '영환', weight: 78, },
+                    { name: '서연', weight: 53, },
+                    { name: '지용', weight: 83, },
+                    { name: '예지', weight: 72, },
+                ]
+            }
+
+            const container = document.getElementById('info_container');
+
+            for (i = 0; i < data.info.length; i++) {
+                const personInfo = document.createElement('p');
+                personInfo.textContent = `
+            ${data.info[i].name}의 몸무게는 ${data.info[i].weight}kg 입니다. 
+            `;
+                container.appendChild(personInfo);
+            }
+        });
+
+        function deleteItem(itemId) {
+            let item = document.getElementById(itemId);
+            if (item) {
+                let confirmDelete = confirm("항목을 삭제하겠습니까?")
+                if (confirmDelete) {
+                    item.remove();
+                    alert("삭제되었습니다.");
+                } else {
+                    alert("삭제가 취소되었습니다.");
+                }
+            } else {
+                alert("삭제할 항목을 찾을 수 없습니다.");
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <main>
+        <div class="assignment">
+            <h1>삭제하기 버튼 만들기</h1>
+            <div class="item_container">
+                <div class="item" id="item1"><button onclick="deleteItem('item1')">삭제하기1</button></div>
+                <div class="item" id="item2"><button onclick="deleteItem('item2')">삭제하기2</button></div>
+                <div class="item" id="item3"><button onclick="deleteItem('item3')">삭제하기3</button></div>
+            </div>
+        </div>
+
+        <div class="assignment">
+            <h1>이름과 몸무게 출력</h1>
+            <div class="weight" id="info_container">
+                <p>예시)</p>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
