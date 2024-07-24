@@ -1,0 +1,159 @@
+/* 초기화 스타일 */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* 색상 변수 정의 */
+:root {
+    --background-color: #121212;
+    --header-footer-bg-color: #1f1f1f;
+    --text-color: #ffffff;
+    --input-bg-color: #333333;
+    --input-text-color: #ffffff;
+    --button-bg-color: #ff9800;
+    --button-hover-bg-color: #e68900;
+    --card-bg-color: #1f1f1f;
+    --card-shadow-color: rgba(0, 0, 0, 0.3);
+    --card-title-color: #ff9800;
+    --card-text-color: #cccccc;
+    --dropdown-bg-color: #f1f1f1;
+    --dropdown-hover-bg-color: #ddd;
+}
+
+/* 전역 스타일 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+ul,
+li {
+    text-decoration: none;
+    list-style: none;
+}
+
+ul li a:hover {
+    text-decoration: underline;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* 헤더 스타일 */
+header {
+    background-color: var(--header-footer-bg-color);
+    color: var(--text-color);
+    padding: 20px 0;
+}
+
+header .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 a {
+    color: var(--text-color);
+}
+
+header .logo {
+    position: absolute;
+    left: 50%;
+    top: 23px;
+    width: 140px;
+    height: 90px;
+    margin: 0 0 0 -70px;
+    padding: 0
+}
+
+/* 드롭다운 메뉴 스타일 */
+.navigation {
+    color: var(--text-color);
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    background-color: transparent;
+}
+
+.dropdown {
+    position: relative;
+    display: flex;
+    align-content: space-between;
+    align-items: center;
+}
+
+.dropdown_content {
+    display: none;
+    position: absolute;
+    background-color: var(--dropdown-bg-color);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown_content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown_content a:hover {
+    background-color: var(--dropdown-hover-bg-color);
+}
+
+.dropdown:hover .dropdown_content {
+    display: block;
+}
+
+.dropdown:hover .navigation {
+    background-color: var(--header-footer-bg-color);
+}
+
+/* 메인 스타일 */
+main {
+    padding: 20px 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+}
+
+.movie-card {
+    background-color: var(--card-bg-color);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px var(--card-shadow-color);
+    text-align: center;
+}
+
+.movie-card img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+.movie-card h3 {
+    margin-top: 10px;
+    font-size: 1.2em;
+    color: var(--card-title-color);
+}
+
+.movie-card p {
+    color: var(--card-text-color);
+}
+
+/* 푸터 스타일 */
+footer {
+    background-color: var(--header-footer-bg-color);
+    color: var(--text-color);
+    text-align: center;
+    padding: 20px 0;
+}
