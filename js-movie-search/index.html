@@ -6,177 +6,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie Search Site</title>
     <link rel="stylesheet" href="styles.css">
-    <script>
-        // ----------------- 오류 -----------------
-        // 본인의 API 키를 넣어주셔야 합니다.
-        const API_KEY = '02bf7eeb76ad14e4db3c689d31deefcc';
-        const URL = 'https://api.themoviedb.org/3/movie/popular?api_key=${02bf7eeb76ad14e4db3c689d31deefcc}& language=en - US & page=1';
-
-        fetch(URL)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                // 이후 데이터 처리
-            })
-            .catch(error => console.error('Error:', error));
-
-
-        // ----------------- 방법 1 -----------------
-        // 본인의 API 키를 넣어주셔야 합니다.
-        // const API_KEY = '02bf7eeb76ad14e4db3c689d31deefcc';
-        // const URL = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`; // 템플릿 리터럴 , 보간법: ${}을 사용하여 문자열 사이에 변수 삽입가능
-
-        // fetch(URL)
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         console.log(data);
-        //         // 이후 데이터 처리
-        //     })
-        //     .catch(error => console.error('Error:', error));
-
-        // ----------------- 방법 2 -----------------
-        // 본인의 API 키를 넣어주셔야 합니다.
-        // const API_KEY = '02bf7eeb76ad14e4db3c689d31deefcc';
-        // const URL = 'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1';
-
-        // const options = {
-        //     method: 'GET',
-        //     headers: {
-        //         accept: 'application/json',
-        //         Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMmJmN2VlYjc2YWQxNGU0ZGIzYzY4OWQzMWRlZWZjYyIsIm5iZiI6MTcyMTc4MTcyOS41MTU5NDcsInN1YiI6IjY2OWY2MDVlNzdiYjhiNWE1NDEwNDNmOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.1-KIB794QsuSm5AgY4PZLbhi2rBCHlQC48hlPvYVE3E' //API를 사용할 수 있는 권한을 얻음 ,, Bearer토큰의 소유자를 뜻함
-        //     }
-        // };
-        // fetch(URL, options)
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         console.log(data);
-        //         // let title = data['original_title'];
-        //         // $('#title').text(title);
-
-        //         // let overview = data['overview'];
-        //         // $('#overview').text(overview);
-
-        //         // let poster_path = data['poster_path']; $('#poster_path').text(poster_path);
-
-        //         // let vote_average = data['vote_average'];
-        //         // $('#vote_average').text(vote_average);
-        //     })
-        //     .catch(error => console.error('Error:', error))
-
-    </script>
 </head>
 
 <body>
-    <header>
-        <div class="header_container">
-            <ul class="nav_left">
-                <div class="dropdown">
-                    <li>
-                        <a href="#" class="navigation">By Genre</a>
-                        <div class="dropdown_content">
-                            <a href="#">Action</a>
-                            <a href="#">Comedies</a>
-                            <a href="#">Crime</a>
-                            <a href="#">Sci-Fi</a>
-                        </div>
+    <header class="header ty3">
+        <div class="top">
+            <h1 class="logo"><a href="#">An Bang Theater</a></h1>
 
-                    </li>
-                    <li>
-                        <a href="#" class="navigation">By Release Year</a>
-                        <div class="dropdown_content">
-                            <a href="#">2020</a>
-                            <a href="#">2010</a>
-                            <a href="#">2000</a>
-                            <a href="#">1990</a>
-                        </div>
-                    </li>
-                </div>
+            <form role="search" class="search">
+                <input type="text" placeholder="영화명을 입력해 주세요" title="영화 검색" class="input_text" id="search_input">
+                <button class="search_button" id="search_button"><i class="iconset ico_search"></i> 검색</button>
+            </form>
+            
+        </div>
+
+        <div id="nav">
+            <ul>
+                <li class=""><a href="#">장르별</a>
+                    <div>
+                        <ul>
+                            <li><a href="#" title="Action">Action</a></li>
+                            <li><a href="#" title="Comedies">Comedies</a></li>
+                            <li><a href="#" title="Crime">Crime</a></li>
+                            <li><a href="#" title="Sci-Fi">Sci-Fi</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class=""><a href="#">연도별</a>
+                    <div>
+                        <ul>
+                            <li><a href="#" title="Action">2020</a></li>
+                            <li><a href="#" title="Comedies">2010</a></li>
+                            <li><a href="#" title="Crime">2000</a></li>
+                            <li><a href="#" title="Sci-Fi">1990</a></li>
+                            <li><a href="#" title="Sci-Fi">1980</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class=""><a href="#">국가별</a>
+                    <div>
+                        <ul>
+                            <li><a href="#" title="Action">US</a></li>
+                            <li><a href="#" title="Comedies">UK</a></li>
+                            <li><a href="#" title="Crime">South Korea</a></li>
+                            <li><a href="#" title="Sci-Fi">Japan</a></li>
+                            <li><a href="#" title="Sci-Fi">China</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class=""><a href="#">랭킹순</a>
+                    <div>
+                        <ul>
+                            <li><a href="#" title="Action">5 Stars</a></li>
+                            <li><a href="#" title="Comedies">4 Stars</a></li>
+                            <li><a href="#" title="Crime">3 Stars</a></li>
+                            <li><a href="#" title="Sci-Fi">2 Stars</a></li>
+                            <li><a href="#" title="Sci-Fi">1 Star</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="wrap_nav_underline"><span class="nav_underline"></span></li>
             </ul>
         </div>
-        <h1 class="logo"><a href="#">An Bang Theater</a></h1>
-        <ul class="nav_right">
-            <div class="dropdown">
-                <li>
-                    <a href="#" class="navigation">By Country</a>
-                    <div class="dropdown_content">
-                        <a href="#">US</a>
-                        <a href="#">UK</a>
-                        <a href="#">South Korea</a>
-                        <a href="#">Japan</a>
-                    </div>
-                </li>
-
-                <li>
-                    <a href="#" class="navigation">By Ranking</a>
-                    <div class="dropdown_content">
-                        <a href="#">5 Stars</a>
-                        <a href="#">4 Stars</a>
-                        <a href="#">3 Stars</a>
-                        <a href="#">2 Stars</a>
-                        <a href="#">1 Star</a>
-                    </div>
-                </li>
-            </div>
-        </ul>
-
-        <!-- <h1 class="logo"><a href="#">An Bang Theater</a></h1>
-        <ul>
-            <div class="dropdown">
-                <li>
-                    <a href="#" class="navigation">By Genre</a>
-                    <div class="dropdown_content">
-                        <a href="#">Action</a>
-                        <a href="#">Comedies</a>
-                        <a href="#">Crime</a>
-                        <a href="#">Sci-Fi</a>
-                    </div>
-                </li>
-
-                <li>
-                    <a href="#" class="navigation">By Release Year</a>
-                    <div class="dropdown_content">
-                        <a href="#">2020</a>
-                        <a href="#">2010</a>
-                        <a href="#">2000</a>
-                        <a href="#">1990</a>
-                    </div>
-                </li>
-
-
-                <li>
-                    <a href="#" class="navigation">By Country</a>
-                    <div class="dropdown_content">
-                        <a href="#">US</a>
-                        <a href="#">UK</a>
-                        <a href="#">South Korea</a>
-                        <a href="#">Japan</a>
-                    </div>
-                </li>
-
-                <li>
-                    <a href="#" class="navigation">By Ranking</a>
-                    <div class="dropdown_content">
-                        <a href="#">5 Stars</a>
-                        <a href="#">4 Stars</a>
-                        <a href="#">3 Stars</a>
-                        <a href="#">2 Stars</a>
-                        <a href="#">1 Star</a>
-                    </div>
-                </li>
-            </div>
-        </ul> -->
-        <form role="search">
-            <input type="search" id="search-input" placeholder="search">
-            <button id="search-button">검색</button>
-        </form>
     </header>
     <main>
 
+        <section class="main_movie_list" id="movie-container">
+            <ol id="cards" class="cards">
+                <!-- 영화 리스트-->
+            </ol>
+        </section>
     </main>
     <footer>
-        <p>&copy Sehee Jang | 2024</p>
+        <p>&copy; Sehee Jang | 2024</p>
     </footer>
-    <!-- <script src="script.js"></script> -->
+    <script src="script.js"></script>
 </body>
 
 </html>

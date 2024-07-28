@@ -3,60 +3,54 @@
 const API_KEY = '02bf7eeb76ad14e4db3c689d31deefcc';
 const URL = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=ko-US&page=1`; // 템플릿 리터럴 , 보간법: ${}을 사용하여 문자열 사이에 변수 삽입가능
 
-// 영화 카드 생성 함수
-function createMovieCard(movie) {
-  const movieCard = document.createElement('li');
-  movieCard.className = 'card';
-  movieCard.innerHTML = `
-    <a href="#" class="movie_list_info">
-      <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.original_title}" class="poster">
-      <div class="wrap" style="display:none; opacity: 1;">
-        <h3 class="title">${movie.title}</h3>
-        <div class="summary">${movie.overview}</div>
-        <div class="score">
-          <div class="preview">
-            <p class="tit">관람평</p>
-            <p class="number">${movie.vote_average}<span class="ir">점</span></p>   
-          </div>
-        </div>
-      </div>
-    </a>
-  `;
-
-  // 마우스 오버 및 마우스 아웃 이벤트 리스너 추가
-  const movieListInfo = movieCard.querySelector('.movie_list_info');
-  movieListInfo.addEventListener('mouseover', function () {
-    this.querySelector('.wrap').style.display = 'block';
-  });
-  movieListInfo.addEventListener('mouseout', function () {
-    this.querySelector('.wrap').style.display = 'none';
-  });
-
-  // 영화 카드 클릭 시 alert
-  movieCard.addEventListener('click', () => alert(`Movie ID: ${movie.id}`));
-
-  return movieCard;
-}
-
 // Fetch
 fetch(URL)
   .then(response => response.json())
   .then(data => {
+    console.log(data)
     const movies = data.results;
     const cardContainer = document.getElementById('cards');
     movies.forEach(movie => {
-      const movieCard = createMovieCard(movie);
+      const movieCard = document.createElement('li');
+      movieCard.className = 'card';
+      movieCard.innerHTML = `
+          <a href="#" class="movie_list_info">
+              <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.original_title}" class="poster">
+              <div class="wrap" style="display:none; opacity: 1;">
+                  <div class="title">${movie.original_title}</div>
+                  <div class="summary">${movie.overview}</div>
+                  <div class="score">
+                      <div class="preview">
+                          <p class="tit">관람평</p>
+                          <p class="number">${movie.vote_average}<span class="ir">점</span></p>   
+                      </div>
+                  </div>
+              </div>
+          </a>
+      `;
       cardContainer.appendChild(movieCard);
     });
+
+
+    // 마우스 오버 및 마우스 아웃 이벤트 리스너 추가
+    document.querySelectorAll('.movie_list_info').forEach(item => {
+      item.addEventListener('mouseover', function () {
+        this.querySelector('.wrap').style.display = 'block';
+      });
+      item.addEventListener('mouseout', function () {
+        this.querySelector('.wrap').style.display = 'none';
+      });
+    });
   })
+
   .catch(error => console.error('Error:', error));
 
-// 영화 제목 검색 구현
+// 영화 제목 filter()
 document.getElementById('search_button').addEventListener('click', () => {
   const query = document.getElementById('search_input').value.toLowerCase();
-  const movieCards = document.querySelectorAll('.card');
+  const movieCards = document.querySelectorAll('.main_movie_list');
   movieCards.forEach(card => {
-    const title = card.querySelector('h3').textContent.toLowerCase();
+    const title = card.querySelector('.title').textContent.toLowerCase();
     if (title.includes(query)) {
       card.style.display = 'block';
     } else {
@@ -89,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-// ----------------- FETCH 방법 2 -----------------
+// ----------------- 방법 2 -----------------
 // 본인의 API 키를 넣어주셔야 합니다.
 // const API_KEY = '02bf7eeb76ad14e4db3c689d31deefcc';
 // const URL = 'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1';

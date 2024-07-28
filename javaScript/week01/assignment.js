@@ -89,7 +89,7 @@ const signs1 = [true, false, true];
 const absolutes2 = [1, 2, 3]
 const signs2 = [false, false, true]
 
-console.log(solution2(absolutes1, signs1));
+console.log(solution1(absolutes1, signs1));
 console.log(solution2(absolutes2, signs2));
 
 // let absolutes = [4, 7, 12];
