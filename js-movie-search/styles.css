@@ -289,59 +289,6 @@ section {
     text-align: center;
 }
 
-
-.main_movie_list>ol li .movie-list-info .wrap .score .preview {
-    display: inline-block;
-    overflow: hidden;
-    vertical-align: middle;
-    line-height: 36px;
-}
-
-.main_movie_list>ol li .movie-list-info .wrap .score .preview .tit {
-    display: block;
-    float: left;
-    margin: 0 19px 0 0;
-    font-size: 0.8667em;
-}
-
-.main_movie_list>ol li .movie-list-info .wrap .score .preview .number {
-    float: left;
-    font-size: 1.6em;
-    color: #59bec9;
-}
-
-.main_movie_list>ol li .movie-list-info .wrap .score .review {
-    display: inline-block;
-    overflow: hidden;
-    vertical-align: middle;
-    line-height: 36px;
-}
-
-.main_movie_list>ol li .movie-list-info .wrap .score .review .tit {
-    display: block;
-    float: right;
-    margin: 0 0 0 19px;
-    font-size: 0.8667em;
-}
-
-.main_movie_list>ol li .movie-list-info .wrap .score .review .number {
-    float: left;
-    font-size: 1.6em;
-    color: #c698f4;
-}
-
-.main_movie_list>ol li .movie-list-info .wrap .score .sign {
-    display: inline-block;
-    overflow: hidden;
-    width: 10px;
-    height: 16px;
-    margin: 0 5px;
-    vertical-align: middle;
-    text-indent: -999px;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
 /* 푸터 스타일 */
 footer {
     background-color: var(--header_footer_bg_color);
