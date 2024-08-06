@@ -35,14 +35,32 @@
                 // 4. 함수 this 바인딩: 시릴
                 return this.fullname.split(' ')[1];
             })()
-
         }
 
         console.log('Not', fighter.opponent.getFullname(), 'VS', fighter.getName());
-        console.log('It is', fighter.getName(), 'VS', fighter.getFirstName(), fighter.getLastName);
+            console.log('It is', fighter.getName(), 'VS', fighter.getFirstName(), fighter.getLastName);
     </script>
 </head>
-
+<style>
+    body {
+        font-family: 'Nanum Gothic';
+        font-size: 16px;
+    }
+    
+    li {
+        padding: 5px 0;
+    }
+    .code {
+        background: #eee;
+        padding: 20px;
+        font-size: 15px;
+        line-height: 25px;
+    }
+    .highlight {
+        font-weight: bold;
+        background-color: rgb(255, 255, 138);
+    }
+</style>
 <body>
     <h1>02. 어떤 매치가 성사될까?</h1>
     <p>출력의 결과를 제출해주세요, 그리고 그 이유를 최대한 상세히 설명해주세요.</p>
@@ -50,7 +68,93 @@
 
     <p>[출력 결과]</p>
     <p>Not Francis Ngannou VS John Jones</p>
+    <ul>
+        <li>fighter.opponent.getFullname()
+            <ul>
+                <li>호출의 주체가 명확하면 매서드이다.</li>
+                <li>그렇기 때문에 이 부분에서 가르키는 것은 아래 15-21번째 줄에서의 fullname인 Francis Ngannou
+                    <p class="code">
+                        fullname: 'John Jones',</br>
+                        opponent: {</br>
+                        <span class="highlight">fullname: 'Francis Ngannou',</span></br>
+                        getFullname: function () {  // 1. 객체 this 바인딩: 프란시스 온가누</br>
+                        return this.fullname;</br>
+                        }
+                    </p>
+                </li>
+            </ul>
+        </li>
+        <li>fighter.getName()
+            <ul>
+                <li>getName을 호출할 때, fighter.을 해주었다는 것은 호출의 주체가 fighter로 잡혀있다는 것</li>
+                <li>그렇기 때문에 this가 getName이 위치한 14-61번째 줄 전체에 대한 fullname이기 때문에 John Jones가 됨</li>
+                <p class="code">
+                    {</br>
+                    <span class="highlight">fullname: 'John Jones',</span></br>
+                    opponent: {</br>
+                    fullname: 'Francis Ngannou',</br>
+                    getFullname: function () {</br>
+                    // 1. 객체 this 바인딩: 프란시스 온가누</br>
+                    return this.fullname;</br></br>
+                    }</br>
+                    },</br>
+                    </br>
+                    getName: function () {</br>
+                    // 2. 객체 this 바인딩: 존 존스</br>
+                    return this.fullname;</br>
+                    },</br>
+                    </br>
+                    getFirstName: () => {</br>
+                    // 3. 함수 this 바인딩: 시릴</br>
+                    return this.fullname.split(' ')[0];</br>
+                    },</br>
+                    </br>
+                    getLastName: (function () {</br>
+                    // 4. 함수 this 바인딩: 시릴</br>
+                    return this.fullname.split(' ')[1];</br>
+                    })()</br>
+                    }</br>
+                    }
+                </p>
+            </ul>
+        </li>
+        <li>fighter.getFirstName()
+            <ul>
+                <li>화살표 함수로 선언 됨
+                    <p class="code">
+                        getFirstName: () => {</br>
+                        // 3. 함수 this 바인딩: 시릴</br>
+                        return this.fullname.split(' ')[0];</br>
+                        },
+                    </p>
+                </li>
+                <li>화살표 함수의 특성상 this바인딩을 안함, 무조건 상위의 this를 바로보게 되어있음</li>
+                <li>this바인딩을 마지막에 했던 12번줄 fullname이 채택이 됨
+                    <p class="code">var fullname = 'Ciryl Gane'</p>
+                </li>
+                <li>Ciryl Gane의 getFirstName()이니까 Ciryl</li>
+            </ul>
+        </li>
+    </ul>
+
     <p>It is John Jones VS Ciryl Gane</p>
+    <li>fighter.getLastName
+        <ul>
+            <li>다른 부분과 다르게 호출부()가 없음: 아래 하이라이트 된 부분을 가져다 놓은 것과 같음
+                <p class="code">
+                    getLastName: <span class="highlight">(function () {</span>// 4. 함수 this 바인딩: 시릴</br>
+                    <span class="highlight">return this.fullname.split(' ')[1];</span></br>
+                    <span class="highlight">})()</span></br>
+                </p>
+            </li>
+            <li>호출의 주체가 없음, 스스로 선언하고 호출까지 바로 했기때문에 즉시실행 함수라고 부름</li>
+            <li>이런 경우에는 fighter.이라고 명시는 했지만 호출주체가 fighter라는 말이 아니라 위의 하이라이트 된 코드부분을 대체한 것과 같다.</li>
+            <li>37번줄에 '})()' 호출하는 주체가 명확하지 않기 때문에 this바인딩이 전역개체를 바라보아 12번줄 fullname이 채택이 됨
+                <p class="code">var fullname = 'Ciryl Gane'</p>
+            <li>Ciryl Gane의 split한 뒤 1번째이니까 Gane</li>
+            </li>
+        </ul>
+    </li>
 </body>
 
 </html>
