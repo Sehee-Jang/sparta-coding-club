@@ -11,7 +11,7 @@ async function printTest2() {
     //함수를 호출할 때, await
     const result2 = await fetch("https://jsonplaceholder.typicode.com/users");
 
-    // .json도 완성된 결과를 바등려면 기다려야 함 = 비동기적으로 동작
+    // .json도 완성된 결과를 받으려면 기다려야 함 = 비동기적으로 동작
     const users = await result2.json();
 
     console.log(users);
